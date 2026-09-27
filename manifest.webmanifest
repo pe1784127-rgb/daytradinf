@@ -1,0 +1,12 @@
+{
+  "name":"EdgeLog – Trading Journal",
+  "short_name":"EdgeLog",
+  "description":"Day-Trading-Journal mit Live-Trades, Backtesting und Analyse.",
+  "start_url":"./",
+  "scope":"./",
+  "display":"standalone",
+  "background_color":"#06100e",
+  "theme_color":"#08100e",
+  "orientation":"portrait-primary",
+  "icons":[{"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}
