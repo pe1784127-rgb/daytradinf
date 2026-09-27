@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#08100e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="EdgeLog">
+<title>EdgeLog – Trading Journal</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg">
+<style>
+:root{--bg:#06100e;--panel:#0d1815;--panel2:#10201c;--line:#22332e;--text:#f3faf7;--muted:#8da59c;--green:#52e0a4;--red:#ff7a7a;--amber:#f4c66a;--blue:#76a9ff;--radius:18px}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#10271f 0,#06100e 30%,#050b09 100%);color:var(--text);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+button,input,select,textarea{font:inherit}button{cursor:pointer}.app{max-width:1180px;margin:auto;padding:20px 20px 90px}.top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:20px}.brand{display:flex;align-items:center;gap:12px}.logo{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--green);color:#04100c;font-weight:900;font-size:24px}.brand h1{font-size:20px;margin:0}.brand p{margin:3px 0 0;color:var(--muted);font-size:12px}.actions{display:flex;gap:10px}.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:11px 14px;border-radius:13px;font-weight:750}.btn.primary{background:var(--green);color:#03100b;border-color:transparent}.btn.danger{color:#ffd3d3;border-color:#693737;background:#2b1515}.tabs{display:flex;gap:8px;overflow:auto;padding-bottom:4px;margin-bottom:18px}.tab{white-space:nowrap;border:1px solid var(--line);background:#0a1512;color:var(--muted);padding:10px 14px;border-radius:999px;font-weight:750}.tab.active{background:var(--green);color:#03100b;border-color:transparent}.view{display:none}.view.active{display:block}.hero{display:grid;grid-template-columns:1.4fr .6fr;gap:14px;margin-bottom:14px}.card{background:linear-gradient(180deg,rgba(18,34,29,.96),rgba(10,22,18,.96));border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:0 14px 35px rgba(0,0,0,.18)}.hero-main{min-height:175px;display:flex;flex-direction:column;justify-content:space-between}.eyebrow{color:var(--green);font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:800}.hero h2{font-size:31px;line-height:1.04;margin:8px 0 8px}.muted{color:var(--muted)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0}.stat strong{display:block;font-size:26px;margin-top:8px}.stat small{color:var(--muted)}.grid{display:grid;grid-template-columns:1.25fr .75fr;gap:14px}.list{display:flex;flex-direction:column;gap:10px}.trade{display:grid;grid-template-columns:1fr auto;gap:12px;padding:14px;border:1px solid var(--line);border-radius:15px;background:#091410}.trade-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.pill{font-size:11px;padding:4px 7px;border-radius:999px;background:#152721;color:#bcd0c8}.pill.live{color:#a8c6ff;background:#122039}.pill.backtest{color:#e7caff;background:#261938}.trade h3{margin:6px 0 4px;font-size:16px}.trade p{margin:2px 0;color:var(--muted);font-size:13px}.result{font-size:20px;font-weight:900;text-align:right}.win{color:var(--green)}.loss{color:var(--red)}.be{color:var(--amber)}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}.filters input,.filters select{min-width:150px}.field,input,select,textarea{width:100%;border:1px solid var(--line);background:#081310;color:var(--text);border-radius:12px;padding:11px 12px;outline:none}.field:focus,input:focus,select:focus,textarea:focus{border-color:#3e806a}.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.form-grid label span{display:block;color:#acc0b8;font-size:12px;font-weight:700;margin:0 0 6px}.wide{grid-column:1/-1}dialog{border:0;padding:0;background:transparent;width:min(760px,calc(100% - 24px));max-height:92vh}dialog::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(5px)}.sheet{background:#0b1713;border:1px solid var(--line);border-radius:22px;padding:20px;color:var(--text);max-height:92vh;overflow:auto}.sheet-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}.sheet-head h2{margin:4px 0}.icon{border:1px solid var(--line);background:#13231e;color:#fff;width:40px;height:40px;border-radius:12px;font-size:22px}.section-title{display:flex;justify-content:space-between;align-items:end;gap:10px;margin-bottom:12px}.section-title h2{margin:5px 0 0}.empty{padding:28px;text-align:center;color:var(--muted);border:1px dashed #294038;border-radius:16px}.bar-row{display:grid;grid-template-columns:120px 1fr 60px;gap:10px;align-items:center;margin:10px 0}.bar{height:9px;background:#172721;border-radius:99px;overflow:hidden}.bar>i{display:block;height:100%;background:var(--green);border-radius:inherit}.notice{font-size:13px;padding:12px;border-radius:13px;background:#0d2019;border:1px solid #234d3d}.bottom{display:none}.settings{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.settings h3{margin-top:0}
+@media(max-width:800px){.app{padding:14px 14px 92px}.top{align-items:flex-start}.brand p{display:none}.actions .secondary{display:none}.hero,.grid,.settings{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.form-grid{grid-template-columns:1fr}.wide{grid-column:auto}.tabs{display:none}.bottom{position:fixed;z-index:20;display:grid;grid-template-columns:repeat(5,1fr);bottom:0;left:0;right:0;background:rgba(7,16,13,.95);backdrop-filter:blur(18px);border-top:1px solid var(--line);padding:8px max(8px,env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))}.bottom button{border:0;background:transparent;color:var(--muted);font-size:11px;padding:6px 2px}.bottom button b{display:block;font-size:19px;margin-bottom:2px}.bottom button.active{color:var(--green)}.bottom .plus{width:48px;height:48px;border-radius:50%;background:var(--green);color:#04100b;font-size:27px;margin:-20px auto 0}.trade{grid-template-columns:1fr}.result{text-align:left}.hero h2{font-size:26px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top">
+  <div class="brand"><div class="logo">E</div><div><h1>EdgeLog</h1><p>Day Trading Journal & Backtesting</p></div></div>
+  <div class="actions"><button class="btn secondary" id="exportTop">Backup</button><button class="btn primary" id="newTrade">+ Trade</button></div>
+</header>
+<nav class="tabs">
+  <button class="tab active" data-view="dashboard">Dashboard</button>
+  <button class="tab" data-view="journal">Journal</button>
+  <button class="tab" data-view="backtest">Backtest</button>
+  <button class="tab" data-view="analytics">Analyse</button>
+  <button class="tab" data-view="settings">Einstellungen</button>
+</nav>
+
+<section class="view active" id="dashboard">
+  <div class="hero">
+    <div class="card hero-main"><div><div class="eyebrow">Trading Performance</div><h2>Deine Trades. Deine Daten. Dein Edge.</h2><p class="muted">Live-Trading und Backtesting getrennt erfassen und objektiv vergleichen.</p></div><div class="row"><span class="pill">Offline-fähig</span><span class="pill">Daten lokal auf deinem Gerät</span></div></div>
+    <div class="card"><div class="eyebrow">Heute</div><h2 id="todayPnl">0.00 €</h2><p class="muted" id="todayInfo">Noch keine Trades heute.</p></div>
+  </div>
+  <div class="stats" id="dashStats"></div>
+  <div class="grid">
+    <div class="card"><div class="section-title"><div><div class="eyebrow">Zuletzt</div><h2>Letzte Trades</h2></div></div><div class="list" id="recent"></div></div>
+    <div class="card"><div class="section-title"><div><div class="eyebrow">Setups</div><h2>Dein stärkster Edge</h2></div></div><div id="setupBars"></div></div>
+  </div>
+</section>
+
+<section class="view" id="journal">
+  <div class="section-title"><div><div class="eyebrow">Journal</div><h2>Alle Trades</h2></div><button class="btn" id="csvBtn">CSV</button></div>
+  <div class="filters"><select id="jMode"><option value="all">Live + Backtest</option><option value="live">Nur Live</option><option value="backtest">Nur Backtest</option></select><select id="jResult"><option value="all">Alle Ergebnisse</option><option value="win">Wins</option><option value="loss">Losses</option><option value="be">Break-even</option></select><input id="jSearch" placeholder="Setup, Markt, Session..."></div>
+  <div class="stats" id="journalStats"></div>
+  <div class="card"><div class="list" id="journalList"></div></div>
+</section>
+
+<section class="view" id="backtest">
+  <div class="card" style="margin-bottom:14px"><div class="eyebrow">Backtesting Lab</div><h2 style="margin:7px 0">Teste deine Strategie mit historischen Daten</h2><p class="muted">Jeder Backtest-Trade landet getrennt von deinen Live-Trades in der Statistik.</p><button class="btn primary" id="newBt">+ Backtest-Trade</button></div>
+  <div class="filters"><input id="btProject" placeholder="Projekt / Sample"><input id="btSetup" placeholder="Setup"><select id="btSession"><option value="all">Alle Sessions</option><option>New York</option><option>London</option><option>Asia</option><option>Other</option></select></div>
+  <div class="stats" id="btStats"></div>
+  <div class="grid"><div class="card"><div class="section-title"><div><div class="eyebrow">Sample</div><h2>Backtest-Trades</h2></div></div><div class="list" id="btList"></div></div><div class="card"><div class="section-title"><div><div class="eyebrow">Auswertung</div><h2>Was die Daten zeigen</h2></div></div><div id="btInsight"></div></div></div>
+</section>
+
+<section class="view" id="analytics">
+  <div class="section-title"><div><div class="eyebrow">Analyse</div><h2>Performance nach Setup</h2></div></div>
+  <div class="stats" id="anaStats"></div>
+  <div class="grid"><div class="card"><h3>Setups</h3><div id="anaSetup"></div></div><div class="card"><h3>Sessions</h3><div id="anaSession"></div></div></div>
+</section>
+
+<section class="view" id="settings">
+  <div class="settings">
+    <div class="card"><h3>Backup</h3><p class="muted">Sichere deine Trades als JSON-Datei und importiere sie später wieder.</p><div class="row"><button class="btn" id="jsonBtn">JSON exportieren</button><label class="btn">JSON importieren<input id="jsonImport" type="file" accept="application/json" hidden></label></div></div>
+    <div class="card"><h3>Als iPhone-App installieren</h3><p class="muted">In Safari öffnen → Teilen → „Zum Home-Bildschirm“.</p><div class="notice">EdgeLog läuft danach im Vollbild und kann nach dem ersten Laden auch offline geöffnet werden.</div></div>
+    <div class="card"><h3>Daten zurücksetzen</h3><p class="muted">Löscht nur die lokal auf diesem Gerät gespeicherten Trades.</p><button class="btn danger" id="resetBtn">Alle Trades löschen</button></div>
+  </div>
+</section>
+</div>
+
+<nav class="bottom">
+<button class="active" data-view="dashboard"><b>⌂</b>Home</button>
+<button data-view="journal"><b>▤</b>Journal</button>
+<button class="plus" id="mobileAdd">+</button>
+<button data-view="backtest"><b>◫</b>Backtest</button>
+<button data-view="analytics"><b>⌁</b>Analyse</button>
+</nav>
+
+<dialog id="tradeDialog"><form id="tradeForm" class="sheet">
+<div class="sheet-head"><div><div class="eyebrow">Trade erfassen</div><h2 id="formTitle">Neuer Trade</h2></div><button class="icon" type="button" id="closeDialog">×</button></div>
+<input type="hidden" id="tradeId">
+<div class="form-grid">
+<label><span>Typ</span><select id="mode"><option value="live">Live</option><option value="backtest">Backtest</option></select></label>
+<label><span>Datum</span><input id="date" type="date" required></label>
+<label><span>Uhrzeit</span><input id="time" type="time"></label>
+<label><span>Markt</span><input id="symbol" value="EUR/USD" required></label>
+<label><span>Richtung</span><select id="direction"><option>Long</option><option>Short</option></select></label>
+<label><span>Session</span><select id="session"><option>New York</option><option>London</option><option>Asia</option><option>Other</option></select></label>
+<label><span>Setup</span><input id="setup" placeholder="z. B. Liquidity + FVG" required></label>
+<label><span>Backtest-Projekt</span><input id="project" placeholder="z. B. EURUSD 2026 Q3"></label>
+<label><span>Entry</span><input id="entry" inputmode="decimal" type="number" step="any"></label>
+<label><span>Stop Loss</span><input id="stop" inputmode="decimal" type="number" step="any"></label>
+<label><span>Exit</span><input id="exit" inputmode="decimal" type="number" step="any"></label>
+<label><span>Risiko in €</span><input id="risk" inputmode="decimal" type="number" step="any" min="0"></label>
+<label><span>P&L in €</span><input id="pnl" inputmode="decimal" type="number" step="any"></label>
+<label><span>R-Multiple</span><input id="r" inputmode="decimal" type="number" step="any" placeholder="automatisch wenn möglich"></label>
+<label class="wide"><span>Confluences / Tags</span><input id="tags" placeholder="Liquidity Sweep, FVG, MSS, HTF Bias"></label>
+<label class="wide"><span>Notizen</span><textarea id="notes" rows="3" placeholder="Warum genommen? Was lief gut/schlecht?"></textarea></label>
+</div>
+<div class="row" style="justify-content:flex-end;margin-top:16px"><button class="btn" type="button" id="cancelTrade">Abbrechen</button><button class="btn primary" type="submit">Trade speichern</button></div>
+</form></dialog>
+
+<script>
+(function(){
+"use strict";
+var DB_NAME="edgelog-db", STORE="trades", db=null, trades=[];
+var $=function(id){return document.getElementById(id)};
+function openDB(){return new Promise(function(resolve,reject){var req=indexedDB.open(DB_NAME,1);req.onupgradeneeded=function(){if(!req.result.objectStoreNames.contains(STORE))req.result.createObjectStore(STORE,{keyPath:"id"})};req.onsuccess=function(){db=req.result;resolve(db)};req.onerror=function(){reject(req.error)}})}
+function allDB(){return new Promise(function(resolve,reject){var req=db.transaction(STORE,"readonly").objectStore(STORE).getAll();req.onsuccess=function(){resolve(req.result||[])};req.onerror=function(){reject(req.error)}})}
+function putDB(t){return new Promise(function(resolve,reject){var req=db.transaction(STORE,"readwrite").objectStore(STORE).put(t);req.onsuccess=function(){resolve()};req.onerror=function(){reject(req.error)}})}
+function delDB(id){return new Promise(function(resolve,reject){var req=db.transaction(STORE,"readwrite").objectStore(STORE).delete(id);req.onsuccess=function(){resolve()};req.onerror=function(){reject(req.error)}})}
+function clearDB(){return new Promise(function(resolve,reject){var req=db.transaction(STORE,"readwrite").objectStore(STORE).clear();req.onsuccess=function(){resolve()};req.onerror=function(){reject(req.error)}})}
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c]})}
+function num(v){var n=parseFloat(v);return isFinite(n)?n:0}
+function euro(v){return num(v).toLocaleString("de-DE",{minimumFractionDigits:2,maximumFractionDigits:2})+" €"}
+function pct(v){return num(v).toFixed(1)+"%"}
+function resultOf(t){if(num(t.r)>0.001||num(t.pnl)>0.001)return"win";if(num(t.r)<-0.001||num(t.pnl)<-0.001)return"loss";return"be"}
+function calcR(t){if(t.r!==""&&t.r!=null&&isFinite(parseFloat(t.r)))return parseFloat(t.r);if(num(t.risk)>0&&isFinite(parseFloat(t.pnl)))return parseFloat(t.pnl)/num(t.risk);var e=parseFloat(t.entry),s=parseFloat(t.stop),x=parseFloat(t.exit);if(isFinite(e)&&isFinite(s)&&isFinite(x)&&Math.abs(e-s)>0){var move=t.direction==="Short"?e-x:x-e;return move/Math.abs(e-s)}return 0}
+function metrics(arr){var n=arr.length,w=0,l=0,be=0,pnl=0,rs=0,gp=0,gl=0;arr.forEach(function(t){var res=resultOf(t),p=num(t.pnl),r=num(t.r);pnl+=p;rs+=r;if(res==="win")w++;else if(res==="loss")l++;else be++;if(p>0)gp+=p;if(p<0)gl+=Math.abs(p)});return{n:n,w:w,l:l,be:be,pnl:pnl,r:rs,win:n?w/n*100:0,pf:gl?gp/gl:(gp?999:0),avg:n?rs/n:0}}
+function statCards(m){var pf=m.pf>=999?"∞":m.pf.toFixed(2);return '<div class="card stat"><small>Trades</small><strong>'+m.n+'</strong></div><div class="card stat"><small>Winrate</small><strong>'+pct(m.win)+'</strong></div><div class="card stat"><small>Net P&L</small><strong class="'+(m.pnl>=0?"win":"loss")+'">'+euro(m.pnl)+'</strong></div><div class="card stat"><small>Profit Factor</small><strong>'+pf+'</strong></div>'}
+function tradeHTML(t){var r=num(t.r),res=resultOf(t),sign=r>0?"+":"";return '<div class="trade"><div><div class="trade-head"><span class="pill '+t.mode+'">'+(t.mode==="backtest"?"Backtest":"Live")+'</span><span class="pill">'+esc(t.session||"—")+'</span><span class="pill">'+esc(t.direction||"")+'</span></div><h3>'+esc(t.symbol)+' · '+esc(t.setup)+'</h3><p>'+esc(t.date)+' '+esc(t.time||"")+(t.project?" · "+esc(t.project):"")+'</p><p>'+esc(t.tags||"")+'</p><div class="row" style="margin-top:8px"><button class="btn edit" data-id="'+esc(t.id)+'">Bearbeiten</button><button class="btn danger del" data-id="'+esc(t.id)+'">Löschen</button></div></div><div><div class="result '+res+'">'+sign+r.toFixed(2)+'R</div><p style="text-align:right">'+euro(t.pnl)+'</p></div></div>'}
+function groupStats(arr,key){var map={};arr.forEach(function(t){var k=(t[key]||"Ohne Angabe").trim()||"Ohne Angabe";if(!map[k])map[k]=[];map[k].push(t)});return Object.keys(map).map(function(k){var m=metrics(map[k]);return{name:k,m:m}}).sort(function(a,b){return b.m.r-a.m.r})}
+function bars(arr,key){var groups=groupStats(arr,key).slice(0,7);if(!groups.length)return'<div class="empty">Noch keine Daten.</div>';var max=Math.max.apply(null,groups.map(function(g){return Math.max(Math.abs(g.m.r),1)}));return groups.map(function(g){var width=Math.min(100,Math.abs(g.m.r)/max*100);return'<div class="bar-row"><span>'+esc(g.name)+'</span><div class="bar"><i style="width:'+width+'%"></i></div><strong class="'+(g.m.r>=0?"win":"loss")+'">'+g.m.r.toFixed(1)+'R</strong></div>'}).join("")}
+function render(){
+ trades.sort(function(a,b){return String(b.date+b.time).localeCompare(String(a.date+a.time))});
+ var all=metrics(trades);$("dashStats").innerHTML=statCards(all);$("recent").innerHTML=trades.slice(0,5).map(tradeHTML).join("")||'<div class="empty">Noch keine Trades. Tippe auf „+ Trade“.</div>';$("setupBars").innerHTML=bars(trades,"setup");
+ var today=new Date().toISOString().slice(0,10),td=trades.filter(function(t){return t.date===today}),tm=metrics(td);$("todayPnl").textContent=euro(tm.pnl);$("todayPnl").className=tm.pnl>=0?"win":"loss";$("todayInfo").textContent=tm.n?tm.n+" Trade(s) · "+tm.r.toFixed(2)+"R":"Noch keine Trades heute.";
+ renderJournal();renderBacktest();renderAnalytics();bindTradeButtons()
+}
+function renderJournal(){var mode=$("jMode").value,res=$("jResult").value,q=$("jSearch").value.toLowerCase();var arr=trades.filter(function(t){if(mode!=="all"&&t.mode!==mode)return false;if(res!=="all"&&resultOf(t)!==res)return false;var hay=[t.symbol,t.setup,t.session,t.tags,t.project,t.notes].join(" ").toLowerCase();return !q||hay.indexOf(q)>=0});$("journalStats").innerHTML=statCards(metrics(arr));$("journalList").innerHTML=arr.map(tradeHTML).join("")||'<div class="empty">Keine Trades für diesen Filter.</div>';bindTradeButtons()}
+function renderBacktest(){var p=$("btProject").value.toLowerCase(),s=$("btSetup").value.toLowerCase(),session=$("btSession").value;var arr=trades.filter(function(t){return t.mode==="backtest"&&(!p||String(t.project||"").toLowerCase().indexOf(p)>=0)&&(!s||String(t.setup||"").toLowerCase().indexOf(s)>=0)&&(session==="all"||t.session===session)});var m=metrics(arr);$("btStats").innerHTML=statCards(m);$("btList").innerHTML=arr.map(tradeHTML).join("")||'<div class="empty">Noch keine Backtest-Trades in diesem Sample.</div>';var text="";if(!arr.length)text='<div class="empty">Trage mindestens einige historische Trades ein.</div>';else{text+='<p><strong>'+arr.length+'</strong> Trades im aktuellen Sample.</p>';text+='<p>Durchschnitt: <strong class="'+(m.avg>=0?"win":"loss")+'">'+m.avg.toFixed(2)+'R</strong></p>';text+='<p>Winrate: <strong>'+pct(m.win)+'</strong></p>';var sg=groupStats(arr,"setup")[0];if(sg)text+='<div class="notice">Aktuell stärkstes Setup nach Gesamt-R: <strong>'+esc(sg.name)+'</strong> ('+sg.m.r.toFixed(2)+'R). Aussagekraft steigt mit größerem Sample.</div>'}$("btInsight").innerHTML=text;bindTradeButtons()}
+function renderAnalytics(){var m=metrics(trades);$("anaStats").innerHTML=statCards(m);$("anaSetup").innerHTML=bars(trades,"setup");$("anaSession").innerHTML=bars(trades,"session")}
+function bindTradeButtons(){document.querySelectorAll(".edit").forEach(function(b){b.onclick=function(){editTrade(b.dataset.id)}});document.querySelectorAll(".del").forEach(function(b){b.onclick=async function(){if(confirm("Trade wirklich löschen?")){await delDB(b.dataset.id);await reload()}}})}
+async function reload(){trades=await allDB();render()}
+function openForm(mode){$("tradeForm").reset();$("tradeId").value="";$("mode").value=mode||"live";$("date").value=new Date().toISOString().slice(0,10);$("symbol").value="EUR/USD";$("session").value="New York";$("formTitle").textContent=mode==="backtest"?"Neuer Backtest-Trade":"Neuer Trade";$("tradeDialog").showModal()}
+function editTrade(id){var t=trades.find(function(x){return x.id===id});if(!t)return;["tradeId","mode","date","time","symbol","direction","session","setup","project","entry","stop","exit","risk","pnl","r","tags","notes"].forEach(function(k){var el=$(k);if(el)el.value=t[k] == null ? "" : t[k]});$("formTitle").textContent="Trade bearbeiten";$("tradeDialog").showModal()}
+$("tradeForm").addEventListener("submit",async function(e){e.preventDefault();var t={id:$("tradeId").value||("t_"+Date.now()+"_"+Math.random().toString(36).slice(2,8)),mode:$("mode").value,date:$("date").value,time:$("time").value,symbol:$("symbol").value.trim(),direction:$("direction").value,session:$("session").value,setup:$("setup").value.trim(),project:$("project").value.trim(),entry:$("entry").value,stop:$("stop").value,exit:$("exit").value,risk:$("risk").value,pnl:$("pnl").value,r:$("r").value,tags:$("tags").value.trim(),notes:$("notes").value.trim(),updatedAt:new Date().toISOString()};t.r=calcR(t);await putDB(t);$("tradeDialog").close();await reload()});
+function setView(id){document.querySelectorAll(".view").forEach(function(v){v.classList.toggle("active",v.id===id)});document.querySelectorAll("[data-view]").forEach(function(b){b.classList.toggle("active",b.dataset.view===id)});window.scrollTo({top:0,behavior:"smooth"})}
+document.querySelectorAll("[data-view]").forEach(function(b){b.addEventListener("click",function(){setView(b.dataset.view)})});
+$("newTrade").onclick=function(){openForm("live")};$("mobileAdd").onclick=function(){openForm("live")};$("newBt").onclick=function(){openForm("backtest")};$("closeDialog").onclick=function(){$("tradeDialog").close()};$("cancelTrade").onclick=function(){$("tradeDialog").close()};
+["jMode","jResult","jSearch"].forEach(function(id){$(id).addEventListener(id==="jSearch"?"input":"change",renderJournal)});["btProject","btSetup","btSession"].forEach(function(id){$(id).addEventListener(id==="btSession"?"change":"input",renderBacktest)});
+function download(name,text,type){var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type:type||"text/plain"}));a.download=name;a.click();setTimeout(function(){URL.revokeObjectURL(a.href)},1000)}
+function exportJSON(){download("edgelog-backup-"+new Date().toISOString().slice(0,10)+".json",JSON.stringify({version:1,exportedAt:new Date().toISOString(),trades:trades},null,2),"application/json")}
+$("jsonBtn").onclick=exportJSON;$("exportTop").onclick=exportJSON;
+$("jsonImport").onchange=async function(e){var f=e.target.files[0];if(!f)return;try{var d=JSON.parse(await f.text()),arr=Array.isArray(d)?d:d.trades;if(!Array.isArray(arr))throw new Error("Format");for(var i=0;i<arr.length;i++){if(!arr[i].id)arr[i].id="import_"+Date.now()+"_"+i;await putDB(arr[i])}await reload();alert("Import erfolgreich.")}catch(err){alert("Datei konnte nicht importiert werden.")}e.target.value=""};
+$("csvBtn").onclick=function(){var cols=["mode","date","time","symbol","direction","session","setup","project","entry","stop","exit","risk","pnl","r","tags","notes"];var rows=[cols.join(";")].concat(trades.map(function(t){return cols.map(function(c){return '"'+String(t[c]==null?"":t[c]).replace(/"/g,'""')+'"'}).join(";")}));download("edgelog-trades.csv",rows.join("\n"),"text/csv;charset=utf-8")};
+$("resetBtn").onclick=async function(){if(confirm("Wirklich alle Trades auf diesem Gerät löschen?")){await clearDB();await reload()}};
+openDB().then(reload).catch(function(){alert("Lokale Datenbank konnte nicht geöffnet werden.")});
+if("serviceWorker" in navigator)window.addEventListener("load",function(){navigator.serviceWorker.register("./sw.js").catch(function(){})});
+})();
+</script>
+</body>
+</html>
